@@ -1,0 +1,20 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    <NoWarn>$(NoWarn);NU1507</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Google.Protobuf" Version="3.29.2" />
+    <PackageVersion Include="Grpc.Core.Api" Version="2.67.0" />
+    <PackageVersion Include="ILMerge" Version="3.0.41" />
+    <PackageVersion Include="System.CodeDom" Version="9.0.0" />
+    <PackageVersion Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.0" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.0" />
+    <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
+    <PackageVersion Include="Grpc.Core" Version="2.46.5" />
+    <PackageVersion Include="System.Buffers" Version="4.5.1" />
+    <PackageVersion Include="System.Memory" Version="4.5.4" />
+    <PackageVersion Include="System.Numerics.Vectors" Version="4.5.0" />
+  </ItemGroup>
+</Project>

@@ -46,7 +46,7 @@ class U<#=service.Name#><#=method.Name#>LambdaWrapper : public UObject
 	GENERATED_BODY()
 public:
 	UPROPERTY()
-	U<#=service.Name#>Client* InnerClient;
+	TObjectPtr<U<#=service.Name#>Client> InnerClient;
 
 	UFUNCTION()
 	void OnResponse(FGrpcContextHandle Handle, const FGrpcResult& GrpcResult, const <#=method.OutputType#>& Response);

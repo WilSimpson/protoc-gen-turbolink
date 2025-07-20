@@ -64,7 +64,7 @@ private:
 	U<#=service.Name#>* <#=service.Name#>;
 	
 	UPROPERTY()
-	U<#=service.Name#>Client* <#=service.Name#>Client;
+	TObjectPtr<U<#=service.Name#>Client> <#=service.Name#>Client;
 	
 	FGrpcContextHandle Context;
 	<#=method.InputType#> Request;

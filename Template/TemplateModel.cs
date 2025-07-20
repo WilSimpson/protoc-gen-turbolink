@@ -1,6 +1,4 @@
-﻿using Google.Protobuf.Reflection;
-
-namespace protoc_gen_turbolink.Template
+﻿namespace protoc_gen_turbolink.Template
 {
     partial class ClientCPP
     {

@@ -34,13 +34,13 @@ public:
 	virtual EGrpcServiceState GetServiceState() const override;
 
 	UFUNCTION(BlueprintCallable, Category = TurboLink)
-	U<#=service.Name#>Client* MakeClient();
+	TObjectPtr<U<#=service.Name#>Client> MakeClient();
 
 private:
 	virtual void Shutdown() override;
 
 	UPROPERTY()
-	U<#=service.Name#>Client* InnerClient; 
+	TObjectPtr<U<#=service.Name#>Client> InnerClient; 
 public:
 <#
 foreach (GrpcServiceMethod method in service.MethodArray)
