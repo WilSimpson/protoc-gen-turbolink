@@ -242,14 +242,14 @@ if(method.ServerStreaming) {
             
             #line default
             #line hidden
-            this.Write("Delegate OnFail;\r\n\r\nprivate:\r\n\tvirtual void Activate() override;\r\n\r\n\tUPROPERTY()\r\n\tU");
+            this.Write("Delegate OnFail;\r\n\r\nprivate:\r\n\tvirtual void Activate() override;\r\n\r\n\tUPROPERTY()\r\n\tTObjectPtr<U");
             
             #line 64 "Z:\wilsimpson\protoc-gen-turbolink\Template\NodeH.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(service.Name));
             
             #line default
             #line hidden
-            this.Write("* ");
+            this.Write("> ");
             
             #line 64 "Z:\wilsimpson\protoc-gen-turbolink\Template\NodeH.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(service.Name));

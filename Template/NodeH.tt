@@ -61,7 +61,7 @@ private:
 	virtual void Activate() override;
 
 	UPROPERTY()
-	U<#=service.Name#>* <#=service.Name#>;
+	TObjectPtr<U<#=service.Name#>> <#=service.Name#>;
 	
 	UPROPERTY()
 	TObjectPtr<U<#=service.Name#>Client> <#=service.Name#>Client;

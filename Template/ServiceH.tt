@@ -34,7 +34,7 @@ public:
 	virtual EGrpcServiceState GetServiceState() const override;
 
 	UFUNCTION(BlueprintCallable, Category = TurboLink)
-	TObjectPtr<U<#=service.Name#>Client> MakeClient();
+	U<#=service.Name#>Client* MakeClient();
 
 private:
 	virtual void Shutdown() override;

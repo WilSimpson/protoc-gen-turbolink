@@ -78,14 +78,14 @@ foreach(GrpcService service in s.ServiceArray)
             
             #line default
             #line hidden
-            this.Write(" : public UGrpcService\r\n{\r\n\tGENERATED_BODY()\r\npublic:\r\n\tUFUNCTION(BlueprintCallable, Category = TurboLink)\r\n\tvirtual void Connect() override;\r\n\t\r\n\tUFUNCTION(BlueprintCallable, Category = TurboLink)\r\n\tvirtual EGrpcServiceState GetServiceState() const override;\r\n\r\n\tUFUNCTION(BlueprintCallable, Category = TurboLink)\r\n\tTObjectPtr<U");
+            this.Write(" : public UGrpcService\r\n{\r\n\tGENERATED_BODY()\r\npublic:\r\n\tUFUNCTION(BlueprintCallable, Category = TurboLink)\r\n\tvirtual void Connect() override;\r\n\t\r\n\tUFUNCTION(BlueprintCallable, Category = TurboLink)\r\n\tvirtual EGrpcServiceState GetServiceState() const override;\r\n\r\n\tUFUNCTION(BlueprintCallable, Category = TurboLink)\r\n\tU");
             
             #line 37 "Z:\wilsimpson\protoc-gen-turbolink\Template\ServiceH.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(service.Name));
             
             #line default
             #line hidden
-            this.Write("Client> MakeClient();\r\n\r\nprivate:\r\n\tvirtual void Shutdown() override;\r\n\r\n\tUPROPERTY()\r\n\tTObjectPtr<U");
+            this.Write("Client* MakeClient();\r\n\r\nprivate:\r\n\tvirtual void Shutdown() override;\r\n\r\n\tUPROPERTY()\r\n\tTObjectPtr<U");
             
             #line 43 "Z:\wilsimpson\protoc-gen-turbolink\Template\ServiceH.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(service.Name));

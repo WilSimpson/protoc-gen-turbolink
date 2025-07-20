@@ -21,6 +21,26 @@
         <PackageReference Include="ILMerge" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Template\NodeH.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>NodeH.cs</LastGenOutput>
+      </None>
+      <None Update="Template\ServiceH.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ServiceH.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Template\NodeH.cs">
+        <DependentUpon>NodeH.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Template\ServiceH.cs">
+        <DependentUpon>ServiceH.tt</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
     <Target Name="AfterBuild">
         <Exec Command="$(USERPROFILE)\.nuget\packages\ilmerge\3.0.41\tools\net452\ILMerge.exe $(TargetPath) /out:$(ProjectDir)bin\protoc-gen-turbolink.exe $(TargetDir)Google.Protobuf.dll $(TargetDir)System.Memory.dll $(TargetDir)System.Runtime.CompilerServices.Unsafe.dll $(TargetDir)System.Text.Json.dll $(TargetDir)System.Buffers.dll" />
     </Target>
