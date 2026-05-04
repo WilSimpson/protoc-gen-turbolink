@@ -474,19 +474,33 @@ namespace protoc_gen_turbolink
 				}
 			}
 
-			//add oneof message
-			//key=oneof message index in parent message, value.1=enum index in service, value.2=message index in service
-			Dictionary<int, Tuple<int, int>> oneofMessageMap = new Dictionary<int, Tuple<int, int>>(); 
-			if (protoMessage.OneofDecl.Count > 0)
-			{
-				for(int i=0; i< protoMessage.OneofDecl.Count; i++)
-				{
-					oneofMessageMap.Add(i, new Tuple<int, int>(serviceFile.EnumArray.Count, serviceFile.MessageArray.Count));
+            //add oneof message
+            //key=oneof message index in parent message, value.1=enum index in service, value.2=message index in service
+            // Find synthetic oneofs (used for proto3 optional fields)
+            HashSet<int> syntheticOneofs = new HashSet<int>();
+            foreach (FieldDescriptorProto field in protoMessage.Field)
+            {
+                if (field.HasOneofIndex && field.HasProto3Optional && field.Proto3Optional)
+                {
+                    syntheticOneofs.Add(field.OneofIndex);
+                }
+            }
 
-					GrpcEnum oneofEnum = new GrpcEnum();
+            //add oneof message
+            //key=oneof message index in parent message, value.1=enum index in service, value.2=message index in service
+            Dictionary<int, Tuple<int, int>> oneofMessageMap = new Dictionary<int, Tuple<int, int>>();
+            if (protoMessage.OneofDecl.Count > 0)
+            {
+                for (int i = 0; i < protoMessage.OneofDecl.Count; i++)
+                {
+                    if (syntheticOneofs.Contains(i)) continue; // SKIP SYNTHETIC ONEOFS
 
-					//add oneof message 
-					GrpcMessage_Oneof oneofMessage = new GrpcMessage_Oneof(protoMessage.OneofDecl[i], message, oneofEnum);
+                    oneofMessageMap.Add(i, new Tuple<int, int>(serviceFile.EnumArray.Count, serviceFile.MessageArray.Count));
+
+                    GrpcEnum oneofEnum = new GrpcEnum();
+
+                    //add oneof message 
+                    GrpcMessage_Oneof oneofMessage = new GrpcMessage_Oneof(protoMessage.OneofDecl[i], message, oneofEnum);
 					oneofMessage.Index = serviceFile.MessageArray.Count;
 					serviceFile.MessageArray.Add(oneofMessage);
 
@@ -518,8 +532,8 @@ namespace protoc_gen_turbolink
 					messageField = new GrpcMessageField_Single(field);
 				}
 
-				if (field.HasOneofIndex)
-				{
+                if (field.HasOneofIndex && !syntheticOneofs.Contains(field.OneofIndex))
+                {
 					//add enum field
 					GrpcEnum oneofEnum = serviceFile.EnumArray[oneofMessageMap[field.OneofIndex].Item1];
 					GrpcEnumField oneofEnumField = new GrpcEnumField();
